@@ -1,0 +1,10 @@
+.env
+.kiro/*
+!.kiro/steering/
+
+*.log
+.DS_Store
+
+# App C# (saída de compilação)
+app/**/bin/
+app/**/obj/

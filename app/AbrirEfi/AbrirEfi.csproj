@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Abrir EFI — app Windows (WinForms, .NET Framework 4.8).
+    O .NET Framework 4.8 já vem no Windows 10/11: nada a instalar no Windows.
+    Compila também no macOS/Linux graças ao pacote de assemblies de referência.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>AbrirEFI</AssemblyName>
+    <RootNamespace>AbrirEfi</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+
+    <!-- 64 bits num Windows 64 bits: evita o redirecionamento de System32 para SysWOW64
+         (diskpart/mountvol de 64 bits e o provedor WMI de armazenamento nativo). -->
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+
+    <Product>Abrir EFI</Product>
+    <Title>Abrir EFI</Title>
+    <Description>Monta a partição EFI com uma letra e abre um navegador de arquivos como administrador.</Description>
+    <Company>Daniel Manske</Company>
+    <Copyright>Daniel Manske</Copyright>
+    <Version>0.1.0</Version>
+    <NeutralLanguage>pt-BR</NeutralLanguage>
+
+    <!-- Sem satélites de idioma nem PDB embutido na pasta de saída além do necessário. -->
+    <SatelliteResourceLanguages>pt-BR</SatelliteResourceLanguages>
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Necessário só para compilar net48 fora do Windows; não vai junto com o .exe. -->
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+  </ItemGroup>
+
+</Project>
